@@ -103,12 +103,20 @@ main { max-width: 1120px; margin: 0; padding-inline: clamp(20px, 5vw, 72px); }
 .watch svg circle { fill: var(--river); }
 .watch svg path { fill: var(--sheet); }
 .w-meta { font-size: 13px; color: var(--soft); }
+.watch .w-poster { position: relative; display: block; width: 100%; max-width: 360px; margin: 2px 0 6px; border-radius: 6px; overflow: hidden; border: 1px solid var(--rule); }
+.w-poster img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.watch .w-poster svg { position: absolute; left: 13%; top: 45%; width: 56px; height: 56px; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); }
+.w-poster:hover svg circle { fill: var(--ink); }
 .frame-how .watch { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
 .frame-how .watch-h { margin: 0 0 4px; font-size: 12px; line-height: 1.4; color: var(--soft); }
 
 /* ---- the world Yu built ---- */
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-left: 112px; }
-.fact { padding: 16px 18px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; }
+.fact { padding: 16px 18px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.fact-photo { margin: -16px -18px 12px; }
+.fact-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.fact-photo figcaption { padding: 4px 18px 0; font-size: 11.5px; color: var(--faint); }
+.fact-photo figcaption a { color: var(--faint); }
 .fact h3 { margin: 0 0 6px; font-size: 15.5px; font-weight: 600; }
 .fact p { margin: 0; font-size: 15px; line-height: 1.55; }
 .fact .fact-src { margin-top: 8px; font-size: 12.5px; }

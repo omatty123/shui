@@ -96,14 +96,20 @@ BUILT = dict(id="built", zh="渠", py="qú", gloss="a canal",
   facts=[
     ("Dujiangyan, about 256 BCE",
      "Engineers in Sichuan divided the Min River using the shape of the land itself, without the use of dams. It still waters the Chengdu plain today: 668,700 hectares of farmland.",
-     [("UNESCO", "https://whc.unesco.org/en/list/1001/")]),
+     [("UNESCO", "https://whc.unesco.org/en/list/1001/")],
+     ("img/dujiangyan.webp", "The Min River at Dujiangyan seen from a hillside, split in two around a long wooded island.",
+      "星星", "https://commons.wikimedia.org/wiki/File:Dujiang_Weir.jpg", "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/")),
     ("The Grand Canal, from the 5th century BCE",
      "Built in sections and joined into one system in the 7th century CE, it was the largest civil engineering project in the world before the Industrial Revolution. Boats still use it.",
-     [("UNESCO", "https://whc.unesco.org/en/list/1443/")]),
+     [("UNESCO", "https://whc.unesco.org/en/list/1443/")],
+     ("img/grand-canal.webp", "A long cargo barge moving along the Grand Canal past apartment blocks.",
+      "IcaN", "https://commons.wikimedia.org/wiki/File:A_boat_on_Grand_Canal_of_China.JPG", "public domain", "")),
     ("Today",
      "Like Yu, China uses both today, walls and channels. The Three Gorges Dam on the Yangtze is the largest hydroelectric plant on earth, and the South–North Water Diversion has already carried more than 90 billion cubic meters of water to China’s dry north.",
      [("USGS", "https://www.usgs.gov/water-science-school/science/three-gorges-dam-worlds-largest-hydroelectric-plant"),
-      ("Xinhua", "https://english.news.cn/20260811/9dad0d0e1f974c6b8dfd712c770a2e21/c.html")]),
+      ("Xinhua", "https://english.news.cn/20260811/9dad0d0e1f974c6b8dfd712c770a2e21/c.html")],
+     ("img/three-gorges.webp", "The Three Gorges Dam, a long concrete wall with red cranes on top, holding back the Yangtze.",
+      "Le Grand Portage", "https://commons.wikimedia.org/wiki/File:ThreeGorgesDam-China2009.jpg", "CC BY 2.0", "https://creativecommons.org/licenses/by/2.0/")),
   ],
   close=("So here is a question to carry through the rest of our course. When you look at the Great Lakes, at New Orleans in Blood Dazzler, "
          "at the rising coasts in Rush: who is working with the water, and who is only fighting it?"))
@@ -113,6 +119,10 @@ YT = "https://www.youtube.com/watch?v="
 WATCH = {
   "how": [("Stone Carving of Confucius Meeting Laozi", YT+"VjPuepc1qiw", "museum short from CGTN’s Every Treasure Tells a Story", "5 min")],
   "soft": [("Laozi finally understands the Way", YT+"ror4fpbWkhI", "dramatization from China in the Classics", "19 min")],
+}
+# A still from the video, shown as a clickable poster above its link.
+POSTER = {
+  "soft": ("img/laozi-video.webp", "A still from the video: an old teacher, a child and a younger man walk toward the camera in front of a waterfall. Subtitle: “Supreme good is like water.”"),
 }
 play_svg = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M10 8.5v7l6-3.5z"/></svg>'
 
@@ -124,7 +134,12 @@ def watch_html(key):
         f'<li><a href="{e(href)}" target="_blank" rel="noopener">{play_svg}<span class="w-title">{e(title)}</span></a>'
         f'<span class="w-meta">{e(kind)} · {e(length)}</span></li>'
         for title, href, kind, length in items)
-    return f'<div class="watch"><p class="watch-h">Watch</p><ul>{lis}</ul></div>'
+    poster = ""
+    if key in POSTER:
+        src, alt = POSTER[key]
+        poster = (f'<a class="w-poster" href="{e(items[0][1])}" target="_blank" rel="noopener">'
+                  f'<img src="{src}" alt="{e(alt)}" width="800" height="450" loading="lazy" decoding="async">{play_svg}</a>')
+    return f'<div class="watch"><p class="watch-h">Watch</p>{poster}<ul>{lis}</ul></div>'
 
 TITLE = "Water in Chinese Philosophy"
 DESC = "Block it, or guide it? Water and ruling in Yu the Great, Kongzi, Mengzi, Laozi and Xunzi, with the Chinese beside close English translations."
@@ -156,10 +171,10 @@ for q in QUESTIONS:
         rows = max(6, min(14, math.ceil(math.sqrt(len(p["zh"]) * 1.7))))
         items.append(f'''
     <article class="passage" id="{p["id"]}">
-      <p class="zh" lang="zh-Hant" style="--rows:{rows}">{e(p["zh"])}</p>
+      <blockquote class="zh" lang="zh-Hant" cite="{e(p["href"])}" style="--rows:{rows}">{e(p["zh"])}</blockquote>
       <div class="en-col">
         {who_line(p["who"])}
-        <p class="en">{e(p["en"])}</p>
+        <blockquote class="en">{e(p["en"])}</blockquote>
         <div class="cite">
           <a href="{e(p["href"])}"><span lang="zh-Hant">{e(p["work"])}</span> {e(p["cite"])}</a>
           <button class="share" type="button" data-id="{p["id"]}" data-title="{e(p["cite"])}">{share_svg}<span>Share</span></button>
@@ -174,10 +189,15 @@ for q in QUESTIONS:
     </header>{"".join(items)}
   </section>''')
 
+def fact_photo(src, alt, who, page, lic, lic_url):
+    lic_html = f'<a href="{e(lic_url)}">{e(lic)}</a>' if lic_url else e(lic)
+    return (f'<figure class="fact-photo"><img src="{src}" alt="{e(alt)}" width="960" height="640" loading="lazy" decoding="async">'
+            f'<figcaption>Photo: <a href="{e(page)}">{e(who)}</a>, {lic_html}</figcaption></figure>')
+
 built_facts = "".join(
-    f'<div class="fact"><h3>{e(t)}</h3><p>{e(txt)}</p><p class="fact-src">'
+    f'<div class="fact">{fact_photo(*photo)}<h3>{e(t)}</h3><p>{e(txt)}</p><p class="fact-src">Source: '
     + " · ".join(f'<a href="{e(h)}">{e(n)}</a>' for n, h in links) + '</p></div>'
-    for t, txt, links in BUILT["facts"])
+    for t, txt, links, photo in BUILT["facts"])
 body.append(f'''
   <section class="q built" id="{BUILT["id"]}" aria-labelledby="{BUILT["id"]}-h">
     <header class="q-head">
@@ -240,7 +260,7 @@ doc = f'''<!DOCTYPE html>
   </section>{"".join(body)}
 </main>
 <footer class="foot">
-  <p>Chinese texts as given on <a href="https://zh.wikisource.org/">Chinese Wikisource</a>, linked with each passage (Daodejing: Wang Bi text). “……” marks omitted lines. English renderings are close translations made for this page. Dates: <a href="https://plato.stanford.edu/">Stanford Encyclopedia of Philosophy</a>.</p>
+  <p>Chinese texts as given on <a href="https://zh.wikisource.org/">Chinese Wikisource</a>, linked with each passage (Daodejing: Wang Bi text). “……” marks omitted lines. English renderings are close translations made for this page. Dates: <a href="https://plato.stanford.edu/">Stanford Encyclopedia of Philosophy</a>. Photos from <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>, cropped and resized, credited under each; video still from CGTN.</p>
 </footer>
 <div class="toast" role="status" aria-live="polite" hidden></div>
 <script src="share.js"></script>
