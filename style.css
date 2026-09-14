@@ -1,0 +1,161 @@
+/* 水 · Water in Chinese Philosophy
+   River-stone paper, ink, one river blue. Sans-serif only: Outfit for English,
+   Noto Sans TC for Chinese. Chinese sets vertically (right to left) on wide
+   screens, the way these texts were written; horizontally on phones.
+   Light only, by request. */
+:root {
+  color-scheme: light;
+  --paper: #eef2f1;
+  --sheet: #f8faf9;
+  --ink: #12232c;
+  --soft: #4b5d66;
+  --faint: #8a9aa1;
+  --rule: #cfdadb;
+  --river: #1b5b83;
+  --wash: #dce8ec;
+  --en: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --zh: "Noto Sans TC", "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--en); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--river); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--river); outline-offset: 3px; }
+
+/* ---- hero ---- */
+.hero {
+  max-width: 1120px; margin: 0; padding-inline: clamp(20px, 5vw, 72px); padding-block: 32px 24px;
+  display: grid; grid-template-columns: auto 1fr; gap: 12px 28px; align-items: center;
+}
+.hero-mark { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.hero-py { margin-top: 10px; line-height: 1.3; font-size: 14px; font-weight: 600; color: var(--soft); letter-spacing: .02em; }
+.hero-glyph {
+  font-family: var(--zh); font-weight: 300; font-size: clamp(84px, 9vw, 120px);
+  line-height: .9; color: var(--river);
+}
+.hero-text h1 { margin: 0 0 14px; font-size: clamp(26px, 3vw, 36px); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; text-wrap: balance; }
+.jump { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-bottom: 16px; }
+.jump a {
+  display: inline-flex; align-items: baseline; gap: 6px; min-height: 40px; padding: 8px 12px;
+  border: 1px solid var(--rule); border-radius: 999px; background: var(--sheet);
+  color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500;
+}
+.jump a:hover { border-color: var(--river); }
+
+/* ---- share ---- */
+.share {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px;
+  border: 1px solid var(--rule); border-radius: 999px; background: transparent;
+  color: var(--soft); font: 500 13px/1 var(--en); cursor: pointer;
+}
+.share svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.share:hover { color: var(--river); border-color: var(--river); }
+.share-page { background: var(--river); border-color: var(--river); color: var(--sheet); min-height: 42px; padding: 8px 16px; font-size: 14px; }
+.share-page:hover { color: var(--sheet); filter: brightness(1.1); }
+
+/* ---- frame: water and ruling ---- */
+main { max-width: 1120px; margin: 0; padding-inline: clamp(20px, 5vw, 72px); }
+.frame { padding-block: 22px 8px; border-top: 2px solid var(--ink); max-width: 860px; }
+.frame h2 { margin: 0 0 8px; font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+.frame > .frame-src { margin: 6px 0 0; font-size: 13px; }
+.frame > .frame-src a { color: var(--soft); }
+.frame-text + .frame-text { margin-top: 12px; }
+.frame-text { margin: 0; max-width: 72ch; font-size: 17px; line-height: 1.6; }
+.frame-compare { margin: 14px 0 0; max-width: 72ch; padding-left: 12px; border-left: 3px solid var(--river); color: var(--ink); font-size: 16.5px; line-height: 1.6; }
+.floods-wrap { margin-top: 16px; overflow-x: auto; }
+.floods { width: 100%; border-collapse: collapse; font-size: 14.5px; line-height: 1.45; background: var(--sheet); border: 1px solid var(--rule); }
+.floods caption { text-align: left; padding: 0 0 6px; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.floods th, .floods td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+.floods thead th { font-size: 12.5px; font-weight: 600; color: var(--soft); background: var(--paper); }
+.floods tbody th { font-weight: 600; white-space: nowrap; }
+.floods tbody th a { color: var(--ink); }
+.floods tr.yu { background: var(--wash); }
+.floods tr.yu th a, .floods tr.yu td:nth-child(2) { color: var(--river); font-weight: 600; }
+.frame-how { margin: 18px 0 0; max-width: 72ch; padding: 16px 20px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; }
+.frame-how h3 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+.frame-how p { margin: 0 0 8px; font-size: 16.5px; line-height: 1.6; color: var(--ink); }
+.frame-how p:last-child { margin-bottom: 0; }
+.frame-how .frame-src { margin-top: 2px; font-size: 13px; }
+.frame-how .frame-src a { color: var(--soft); }
+.frame-how, .jump a span, .who span { font-feature-settings: normal; }
+
+/* ---- questions ---- */
+.q { padding-block: 26px 8px; margin-top: 18px; border-top: 2px solid var(--ink); scroll-margin-top: 12px; }
+.q-head { display: grid; grid-template-columns: 92px 1fr; gap: 20px; align-items: start; margin-bottom: 16px; }
+.q-mark { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.q-glyph { font-family: var(--zh); font-size: 44px; font-weight: 400; line-height: 1; color: var(--river); }
+.q-py { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.q-gloss { font-size: 12.5px; line-height: 1.3; color: var(--soft); }
+.q-head h2 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -.015em; line-height: 1.15; }
+.lede { margin: 6px 0 0; max-width: 62ch; color: var(--soft); font-size: 15.5px; }
+.who { margin: 0 0 -6px; font-size: 13px; font-weight: 500; letter-spacing: .02em; color: var(--soft); }
+.who span { font-family: var(--zh); color: var(--river); margin-right: 2px; }
+.who a { color: var(--soft); }
+
+/* ---- watch links ---- */
+.watch { margin-top: 12px; }
+.watch-h { margin: 0 0 4px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); }
+.watch ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.watch li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.watch a { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; color: var(--river); font-size: 15.5px; font-weight: 600; text-decoration: none; }
+.watch a:hover .w-title { text-decoration: underline; text-underline-offset: 3px; }
+.watch svg { width: 18px; height: 18px; flex: none; }
+.watch svg circle { fill: var(--river); }
+.watch svg path { fill: var(--sheet); }
+.w-meta { font-size: 13px; color: var(--soft); }
+.frame-how .watch { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.frame-how .watch-h { margin: 0 0 4px; font-size: 12px; line-height: 1.4; color: var(--soft); }
+
+/* ---- the world Yu built ---- */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-left: 112px; }
+.fact { padding: 16px 18px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; }
+.fact h3 { margin: 0 0 6px; font-size: 15.5px; font-weight: 600; }
+.fact p { margin: 0; font-size: 15px; line-height: 1.55; }
+.fact .fact-src { margin-top: 8px; font-size: 12.5px; }
+.fact-src a { color: var(--soft); }
+.built-close { margin: 20px 0 10px 112px; max-width: 70ch; padding-left: 12px; border-left: 3px solid var(--river); font-size: 17px; font-weight: 500; line-height: 1.55; }
+
+/* ---- passages ---- */
+.passage {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px;
+  margin: 0 0 16px 112px; padding: 20px 24px; background: var(--sheet);
+  border: 1px solid var(--rule); border-radius: 6px; scroll-margin-top: 12px;
+}
+.passage:target { border-color: var(--river); box-shadow: 0 0 0 3px var(--wash); }
+.zh {
+  margin: 0; font-family: var(--zh); font-weight: 400; font-size: 20px; line-height: 1.75;
+  letter-spacing: .06em; writing-mode: vertical-rl; height: calc(var(--rows, 13) * 1.06em + .2em); max-width: 34em;
+  overflow-x: auto; color: var(--ink);
+}
+.en-col { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-width: 0; }
+.en { margin: 0; font-size: 16px; line-height: 1.6; max-width: 62ch; }
+.cite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 14px; }
+.cite a { color: var(--soft); }
+.cite a span { font-family: var(--zh); margin-right: 4px; }
+
+.foot { max-width: 1120px; margin: 20px 0 0; padding-inline: clamp(20px, 5vw, 72px); padding-block: 18px 40px; border-top: 1px solid var(--rule); color: var(--faint); font-size: 13px; }
+.foot p { margin: 0; max-width: 90ch; }
+.foot a { color: var(--soft); }
+
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--paper);
+  font-size: 14px; font-weight: 500; box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+
+@media (max-width: 980px) { .facts { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .facts, .built-close { margin-left: 0; }
+  .passage { margin-left: 0; grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+  .zh { writing-mode: horizontal-tb; height: auto; max-width: none; font-size: 18px; line-height: 1.8; letter-spacing: .03em; overflow: visible; }
+  .q-head { grid-template-columns: 1fr; gap: 6px; }
+  .q-mark { flex-direction: row; align-items: baseline; gap: 10px; }
+  .q-glyph { font-size: 34px; }
+}
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; padding-block: 24px 20px; gap: 0; }
+  .hero-mark { align-items: flex-start; margin-bottom: 8px; }
+  .hero-glyph { font-size: 84px; }
+  .en { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
