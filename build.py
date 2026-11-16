@@ -118,7 +118,7 @@ YT = "https://www.youtube.com/watch?v="
 # Short CGTN videos, each linked where it helps. "China in the Classics" clips are staged dramatizations.
 WATCH = {
   "how": [("Stone Carving of Confucius Meeting Laozi", YT+"VjPuepc1qiw", "museum short from CGTN’s Every Treasure Tells a Story", "5 min")],
-  "soft": [("Laozi finally understands the Way", YT+"ror4fpbWkhI", "dramatization from China in the Classics", "19 min")],
+  "soft": [("Laozi finally understands the Way (1:58–6:55)", "https://youtu.be/ror4fpbWkhI?t=118", "dramatization from China in the Classics", "stop at 6:55")],
 }
 # A still from the video, shown as a clickable poster above its link.
 POSTER = {
